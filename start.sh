@@ -18,7 +18,7 @@ cyan()   { printf "\033[36m%s\033[0m\n" "$*"; }
 # --- 1. system deps -----------------------------------------------------------
 
 missing=()
-for cmd in uv pnpm tesseract gs pdftoppm; do
+for cmd in uv pnpm tesseract gs pdftoppm qpdf; do
     command -v "$cmd" >/dev/null 2>&1 || missing+=("$cmd")
 done
 if [ ${#missing[@]} -gt 0 ]; then
@@ -27,7 +27,7 @@ if [ ${#missing[@]} -gt 0 ]; then
     yellow "  sudo pacman -S --needed uv pnpm tesseract \\"
     yellow "    tesseract-data-pol tesseract-data-eng tesseract-data-deu \\"
     yellow "    tesseract-data-fra tesseract-data-spa tesseract-data-rus \\"
-    yellow "    ghostscript unpaper poppler"
+    yellow "    ghostscript unpaper poppler qpdf"
     exit 1
 fi
 

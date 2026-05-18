@@ -1,3 +1,4 @@
+import shutil
 from pathlib import Path
 
 import pikepdf
@@ -5,6 +6,10 @@ import pytest
 from fastapi.testclient import TestClient
 
 from app.main import app
+
+requires_qpdf = pytest.mark.skipif(
+    shutil.which("qpdf") is None, reason="qpdf binary not installed"
+)
 
 
 @pytest.fixture
@@ -32,6 +37,7 @@ def test_upload_marks_encrypted(encrypted_pdf: Path):
     assert body["page_count"] == 0
 
 
+@requires_qpdf
 def test_unlock_with_correct_password(encrypted_pdf: Path):
     client = TestClient(app)
     upl = _upload(client, encrypted_pdf)
@@ -44,6 +50,7 @@ def test_unlock_with_correct_password(encrypted_pdf: Path):
     assert body["page_count"] == 1
 
 
+@requires_qpdf
 def test_unlock_with_wrong_password(encrypted_pdf: Path):
     client = TestClient(app)
     upl = _upload(client, encrypted_pdf)

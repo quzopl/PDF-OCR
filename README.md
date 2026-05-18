@@ -17,7 +17,7 @@ Samodzielnie hostowana aplikacja do OCR plików PDF. Działa w 100% lokalnie —
 - **Dwa silniki OCR:**
   - `OCRmyPDF` (Tesseract) — szybki, dobrze rozpoznaje typowe dokumenty, wbudowane języki: polski, angielski, niemiecki, francuski, hiszpański, rosyjski.
   - `PaddleOCR` — lepsza jakość na trudnych skanach, opcjonalnie z CUDA.
-- **PDF zabezpieczone hasłem** — wbudowany unlock (jeśli znasz hasło).
+- **PDF zabezpieczone hasłem** — usuwanie hasła przez `qpdf` (jeśli znasz hasło).
 - **Formaty wyjściowe:** przeszukiwalny PDF, TXT, Markdown, DOCX, JSON z pozycjami słów (do dalszej obróbki).
 - **Równoległość per-strona** — wykorzystuje wszystkie rdzenie CPU (lub GPU dla Paddle).
 - **Bez limitu stron**, max upload 200 MB (konfigurowalne).
@@ -30,7 +30,7 @@ Samodzielnie hostowana aplikacja do OCR plików PDF. Działa w 100% lokalnie —
 sudo pacman -S tesseract \
   tesseract-data-pol tesseract-data-eng tesseract-data-deu \
   tesseract-data-fra tesseract-data-spa tesseract-data-rus \
-  ghostscript unpaper poppler nodejs pnpm python uv
+  ghostscript unpaper poppler qpdf nodejs pnpm python uv
 # Opcjonalnie dla CUDA:
 sudo pacman -S cuda cudnn
 ```
@@ -72,7 +72,7 @@ Self-hosted PDF OCR web app. Runs fully locally — nothing leaves your machine.
 - **Two OCR engines:**
   - `OCRmyPDF` (Tesseract) — fast, solid on typical documents. Bundled languages: Polish, English, German, French, Spanish, Russian.
   - `PaddleOCR` — higher quality on hard scans, optional CUDA acceleration.
-- **Password-protected PDFs** — built-in unlock (if you have the password).
+- **Password-protected PDFs** — password removal via `qpdf` (if you have the password).
 - **Output formats:** searchable PDF, TXT, Markdown, DOCX, JSON with word positions (for downstream processing).
 - **Per-page parallelism** — uses all CPU cores (or GPU with Paddle).
 - **No page limit**, 200 MB max upload (configurable).
@@ -85,7 +85,7 @@ Self-hosted PDF OCR web app. Runs fully locally — nothing leaves your machine.
 sudo pacman -S tesseract \
   tesseract-data-pol tesseract-data-eng tesseract-data-deu \
   tesseract-data-fra tesseract-data-spa tesseract-data-rus \
-  ghostscript unpaper poppler nodejs pnpm python uv
+  ghostscript unpaper poppler qpdf nodejs pnpm python uv
 # Optional for CUDA:
 sudo pacman -S cuda cudnn
 ```
